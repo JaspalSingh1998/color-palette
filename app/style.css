@@ -81,4 +81,11 @@ body {
   color: #0c1226;
   padding: 0.5rem 1rem;
   border-radius: 50px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1160px) {
+  .colorp {
+    flex-wrap: wrap;
+  }
 }
