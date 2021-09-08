@@ -86,6 +86,29 @@ body {
   white-space: nowrap;
 }
 
+.alert {
+  position: absolute;
+  right: 0;
+  top: -100%;
+  background-color: #fff;
+  padding: 20px;
+  font-weight: 500;
+  color: green;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+.alert::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 5px;
+  left: 0;
+  top: 0;
+  background-color: #3dbe29;
+  border-radius: 4px;
+}
+
 @media screen and (max-width: 1160px) {
   .colorp {
     flex-wrap: wrap;
