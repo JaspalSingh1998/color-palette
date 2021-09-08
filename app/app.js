@@ -4,23 +4,10 @@ const generateBtn = document.querySelector(".action__container--btn");
 const template = document.querySelector("#template");
 const colorContainer = document.querySelector(".colorp");
 const alert = document.querySelector(".alert");
-const cards = [...document.querySelectorAll(".card")];
 
 generateBtn.addEventListener("click", async (e) => {
   await fetchColors();
   updateColors();
-});
-
-cards.forEach((card) => {
-  card.addEventListener("click", cardHandler);
-});
-
-window.addEventListener("keydown", (e) => {
-  if (e.code === "Space") {
-    updateColors(e);
-  } else if (e.code === "KeyC") {
-    copyPallete();
-  }
 });
 
 function updateColors(e) {
@@ -56,9 +43,9 @@ function cardHandler(e) {
   }, 2000);
 }
 
-function copyPallete() {
+function copyPallete(cardsEl) {
   let codes = [];
-  cards.forEach((card) => {
+  cardsEl.forEach((card) => {
     console.log(card);
     codes.push(card.children[1].textContent);
   });
@@ -105,3 +92,17 @@ function rgbToHex(r, g, b) {
 }
 
 updateColors();
+
+const cards = [...document.querySelectorAll(".card")];
+
+cards.forEach((card) => {
+  card.addEventListener("click", cardHandler);
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    updateColors(e);
+  } else if (e.code === "KeyC") {
+    copyPallete(cards);
+  }
+});
