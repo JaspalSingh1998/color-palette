@@ -8,7 +8,8 @@ generateBtn.addEventListener("click", (e) => {
   updateColors();
 });
 
-function updateColors() {
+function updateColors(e) {
+  e.stopPropagation();
   colorContainer.innerHTML = "";
   for (let i = 0; i < 5; i++) {
     const templateClone = template.content.cloneNode(true);
@@ -21,3 +22,9 @@ function updateColors() {
     colorContainer.appendChild(templateClone);
   }
 }
+
+window.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    updateColors(e);
+  }
+});
