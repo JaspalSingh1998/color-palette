@@ -1,4 +1,4 @@
-const COLORS = ["#D82E2F", "#FF6263", "#207398", "#22CB5C", "#F7CD2E"];
+let COLORS = ["#D82E2F", "#FF6263", "#207398", "#22CB5C", "#F7CD2E"];
 
 const generateBtn = document.querySelector(".action__container--btn");
 const template = document.querySelector("#template");
@@ -6,7 +6,8 @@ const colorContainer = document.querySelector(".colorp");
 const alert = document.querySelector(".alert");
 const cards = [...document.querySelectorAll(".card")];
 
-generateBtn.addEventListener("click", (e) => {
+generateBtn.addEventListener("click", async (e) => {
+  await fetchColors();
   updateColors();
 });
 
@@ -74,6 +75,33 @@ function copyPallete() {
   setTimeout(() => {
     alert.style.top = "-100%";
   }, 2000);
+}
+
+async function fetchColors() {
+  let hex = [];
+  const response = await fetch("http://colormind.io/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      model: "default",
+    }),
+  });
+  const data = await response.json();
+  data.result.forEach((el) => {
+    let newh = rgbToHex(el[0], el[1], el[2]);
+    hex.push(newh);
+  });
+  COLORS = hex;
+}
+
+fetchColors();
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
 updateColors();
