@@ -10,3 +10,26 @@ body {
   min-height: 100vh;
   background-color: #ebebf3;
 }
+.header {
+  text-align: center;
+  color: #0c1226;
+  margin-bottom: 4rem;
+  font-size: 2rem;
+}
+.card {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 0.75rem;
+  background-color: #ffffff;
+}
+.card__color {
+  background: #f9aca7;
+  width: 190px;
+  height: 250px;
+  border-radius: 5px;
+  margin-bottom: 1.25rem;
+}
+.card__color--code {
+  text-align: center;
+  font-size: 1.5rem;
+}
