@@ -4,12 +4,23 @@ const generateBtn = document.querySelector(".action__container--btn");
 const template = document.querySelector("#template");
 const colorContainer = document.querySelector(".colorp");
 
+const cards = [...document.querySelectorAll(".card")];
+
 generateBtn.addEventListener("click", (e) => {
   updateColors();
 });
 
+cards.forEach((card) => {
+  card.addEventListener("click", cardHandler);
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    updateColors(e);
+  }
+});
+
 function updateColors(e) {
-  e.stopPropagation();
   colorContainer.innerHTML = "";
   for (let i = 0; i < 5; i++) {
     const templateClone = template.content.cloneNode(true);
@@ -23,8 +34,13 @@ function updateColors(e) {
   }
 }
 
-window.addEventListener("keydown", (e) => {
-  if (e.code === "Space") {
-    updateColors(e);
-  }
-});
+function cardHandler(e) {
+  const colorCode = e.target.children[1].textContent;
+  const newEl = document.createElement("input");
+  newEl.type = "text";
+  newEl.value = colorCode;
+  document.body.appendChild(newEl);
+  newEl.select();
+  document.execCommand("copy");
+  newEl.remove();
+}
