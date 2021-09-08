@@ -17,6 +17,8 @@ cards.forEach((card) => {
 window.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
     updateColors(e);
+  } else if (e.code === "KeyC") {
+    copyPallete();
   }
 });
 
@@ -39,6 +41,20 @@ function cardHandler(e) {
   const newEl = document.createElement("input");
   newEl.type = "text";
   newEl.value = colorCode;
+  document.body.appendChild(newEl);
+  newEl.select();
+  document.execCommand("copy");
+  newEl.remove();
+}
+
+function copyPallete() {
+  let codes = [];
+  cards.forEach((card) => {
+    codes.push(card.children[1].textContent);
+  });
+  const newEl = document.createElement("input");
+  newEl.type = "text";
+  newEl.value = `[${codes}]`;
   document.body.appendChild(newEl);
   newEl.select();
   document.execCommand("copy");
