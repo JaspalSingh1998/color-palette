@@ -1,5 +1,3 @@
-[View Demo](https://jaspalsingh1998.github.io/color-palette/)
-
 ### Features
 
 - Generate Beautiful Palette
